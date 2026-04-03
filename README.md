@@ -1,5 +1,9 @@
 # 🚀 拯救吃灰旧电脑！Ubuntu 24.04 零门槛变身 7×24 个人服务器 (一键部署)
 
+> 💡 **About PersonalServer:**  
+> *How to create your server, with hardware like n100 or old laptop, even your virtual machine, and own a never shutdown Desktop Environment. It can work like a clouddisk with thrilling speed, turn your andorid device into expensive laptop(LOL). Be with you.*  
+> 👉 [点击查看：项目愿景、远期计划与推进路线图 (Roadmap)](./purpose/vision_and_roadmap.md)
+
 ## 📌 摘要 / 导语
 你是否有一台屏幕稀碎、电池老化的旧笔记本？不想装 Windows 忍受卡顿，想装 Ubuntu 做服务器，却被**合盖休眠**、**远程桌面黑屏**、**内网穿透**折腾到放弃？
 
