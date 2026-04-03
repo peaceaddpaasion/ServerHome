@@ -22,8 +22,7 @@
 ## � 官方一条龙部署与排坑指南
 强烈建议新手在开始前，阅读我们的 [**👉 官方一条龙主线指南 (Master Guide)**](./docs/00_master_guide.md)，它串联了整个部署和决策流程！
 
-对于实战中遇到原理好奇的朋友，我们也准备了硬核的排坑记录：
-- 📕 [依赖填坑：彻底解决向日葵缺少 libgconf-2-4 依赖报错](./docs/01_sunlogin_libgconf2_fix.md)
+对于实战中遇到原理好奇的朋友，我们也准备了硬核的排坑记录：- 📙 [装机开荒：几十块钱的 UFSD 优盘榨干系统盘读写速度](./docs/04_ufsd_bootable_usb_guide.md)- 📕 [依赖填坑：彻底解决向日葵缺少 libgconf-2-4 依赖报错](./docs/01_sunlogin_libgconf2_fix.md)
 - 📗 [远程进阶：XRDP 黑屏闪退痛点与 XFCE4 双桌面隔离原理](./docs/02_xrdp_xfce4_blackscreen_fix.md)
 - 📘 [方案抉择：为什么自带的原生 GNOME 够用，还要装 XFCE4？](./docs/03_native_gnome_rdp_vs_xfce4.md)
 
