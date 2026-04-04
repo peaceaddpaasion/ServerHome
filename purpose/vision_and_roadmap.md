@@ -1,45 +1,50 @@
-# 🌟 项目愿景与路线图 (Vision & Roadmap)
+# 🌟 Project Vision & Roadmap
 
-## 🎯 About (项目宗旨)
+> 🇨🇳 [中文版 (Chinese)](./vision_and_roadmap.zh-CN.md)
 
-> *How to create your server, with hardware like n100 or old laptop, even your virtual machine, and own a never shutdown Desktop Environment. It can work like a clouddisk with thrilling speed, turn your andorid device into expensive laptop(LOL). Be with you.*
+## 🎯 About PersonalServer
 
-教你如何利用 **N100 迷你神机、吃灰十年的老 Lenovo、赛扬(Celeron)上网本，甚至是一块树莓派(Raspberry Pi)**，零门槛打造一台压榨每一滴算力的微型服务器。
+> *How to create your server, with hardware like an N100 mini PC or old laptop, even your virtual machine, and own a never-shutdown Desktop Environment. It can work like a cloud disk with thrilling speed, turn your Android device into an expensive laptop (LOL). Be with you.*
 
-在家里，它是一个永不宕机的数据总站；在外面，它能让你随身携带的廉价安卓白牌平板/旧设备，通过无感串流**瞬间拥有媲美 Surface Laptop、甚至万元级高配轻薄本的生产力**（带去星巴克敲代码，别人或许以为你在用极致形态的 iPad Pro 跑大型项目，LOL）。
+Learn how to use **an N100 mini PC, a decade-old Lenovo, a Celeron netbook, or even a Raspberry Pi** to build a zero-barrier micro server that squeezes out every last drop of computing power.
 
-**PersonalServer，与你同在。**
+At home, it's a permanently online data hub. On the go, it lets you carry a cheap Android tablet or old device that — through seamless streaming — **instantly achieves the productivity of a Surface Laptop or even a high-end ultrabook** (walk into a café to write code, and others might think you're running a serious project on an extreme-form iPad Pro, LOL).
 
----
-
-## 🗺️ 发展计划 (Roadmap)
-
-我们的终极目标是打造一个 All-in-One 的轻量级、无脑化的个人服务器基础设施。未来的版图将围绕三大核心支柱展开：
-
-1. **🖥️ 稳定无感的远程桌面 (Remote Desktop) —— [基石底座]**
-   - 解决极其复杂的网络层异地直连问题，为后续高级功能铺好全天候在线的环境。
-   - 实现“主机有人用，远程单独开一桌”并发体验。
-2. **💿 百倍提速的极速云盘 + 互联网关 (Cloud Disk & Gateway) —— [首发核心发售/可感功能]**
-   - **痛点降维打击**：这是用户最容易感知的第一个核心落地场景。受够了商业网盘强制的 100 KB/s 龟速吸血？利用网关打通的优质原生网络，轻松实现相较于限速网盘 **几十、甚至上百倍的痛快提速体验**（完全合规、高度私密、无需会员）。
-   - 将私人极速云盘与轻量级路由、安全控制深度结合，作为推广和实操突破口。
-3. **🤖 OpenClaw 智能抓手接入 (AI Automation) —— [降维操作体验]**
-   - 枯燥的 Linux 命令行对小白依然有门槛，所以我们将引入强大的 **OpenClaw** AI 作为交互抓手。
-   - 用户只需用自然语言说话：“帮我看看云盘昨天下了什么”、“监控一下目前网关流量”、“把这几张照片同步到平板的备份目录”，服务器即刻变身有思考能力的赛博管家。
-4. **🏠 智能物联引擎与家庭中枢 (Smart Home & IoT) —— [蓝海探索方向]**
-   - **天然的神装底座**：别忘了，废旧笔记本天生集成了 **麦克风、高清摄像头**，甚至拥有完美的 **天然防断电 UPS（旧电池）**！
-   - **蓝海场景**：结合 OpenClaw 的智能化，轻松化身“高智商远程电视盒子”；接入 Home Assistant 作为物联网监控和控制节点，将沉睡在外设里的传感器全套唤醒。
+**PersonalServer. Be with you.**
 
 ---
 
-## ⏳ 当前进度 (Progress)
+## 🗺️ Roadmap
 
-记录我们在“捡垃圾折腾”道路上，从零到一的硬核填坑历程：
+Our ultimate goal is to build an All-in-One lightweight, effortless personal server infrastructure. The future roadmap revolves around three core pillars:
 
-- [x] **需求调研**：梳理旧设备利用的三大痛点（合盖休眠、内网穿透、远程黑屏）。
-- [x] **软件选择**：横向对比数十种方案，敲定“向日葵原版” + “XRDP(XFCE4)” + “原生 GNOME”的双轨技术栈。
-- [x] **底层填坑**：死磕 Ubuntu 24.04 特性。写出完美的休眠拦截、修复 `libgconf-2-4` 历史依赖、破解 Wayland/D-Bus 会话隔离漏洞。
-- [x] **v1.0 落地**：推出纯净安全、无门槛的 **完全体一键部署脚本 (`install.sh`)**。
-- [x] **文档沉淀**：编写“官方一条龙通关指导”及底层周边硬核子教程体系。
-- [ ] **v2.0 探索**：引入轻量级开源网关（Gateway）与私人云盘（Cloud Disk）的无脑自建方案...
+1. **🖥️ Stable, Seamless Remote Desktop — [Foundation Layer]**
+   - Solve the extremely complex cross-network remote connection problem. Lay the always-online foundation for all advanced features.
+   - Enable "someone on the physical screen + someone connecting remotely" concurrent experience.
 
-> 欢迎任何人提供 Issue 和 PR，让废旧设备的余热榨取得更猛烈些！
+2. **💿 100x-Speed Personal Cloud Disk + Internet Gateway — [First Flagship Feature / User-Facing]**
+   - **Pain point killer**: This is the first core scenario users can most directly feel. Tired of commercial cloud storage throttling you to 100 KB/s? Using the high-quality native network opened by the gateway, easily achieve speeds **tens or even hundreds of times faster than throttled cloud storage** (fully compliant, highly private, no subscription needed).
+   - Deeply integrate a private high-speed cloud disk with a lightweight router and security controls as the breakout use case.
+
+3. **🤖 OpenClaw AI Integration (AI Automation) — [Next-Level UX]**
+   - The Linux command line is still a barrier for non-technical users, so we'll introduce the powerful **OpenClaw** AI as an interaction layer.
+   - Users simply speak naturally: "Show me what the cloud disk downloaded yesterday", "Monitor current gateway traffic", "Sync these photos to the backup folder on my tablet" — the server instantly becomes a thinking cyber-butler.
+
+4. **🏠 Smart IoT Engine & Home Hub — [Blue Ocean Exploration]**
+   - **Natural powerhouse**: Don't forget — old laptops come with built-in **microphones, HD webcams**, and even a perfect **natural UPS (old battery)**!
+   - **Untapped scenarios**: Combined with OpenClaw intelligence, easily transform it into a "high-IQ remote streaming box"; plug in Home Assistant as an IoT monitoring and control node, awakening all the sensors sleeping in peripheral devices.
+
+---
+
+## ⏳ Current Progress
+
+Tracking our hardcore journey from zero to one on the path of "dumpster-diving tinkering":
+
+- [x] **Requirements Research**: Identified the three major pain points of old-device reuse (lid-sleep, network tunneling, remote black screen).
+- [x] **Software Selection**: Compared dozens of solutions, settled on "official Sunlogin" + "XRDP (XFCE4)" + "native GNOME" dual-track tech stack.
+- [x] **Foundation Fixes**: Conquered Ubuntu 24.04 specifics. Wrote perfect sleep interception, fixed `libgconf-2-4` legacy dependency, cracked the Wayland/D-Bus session isolation issue.
+- [x] **v1.0 Launch**: Released a clean, safe, zero-barrier **complete one-click deployment script (`install.sh`)**.
+- [x] **Documentation**: Wrote the "Official Master Guide" plus a suite of deep-dive technical sub-tutorials.
+- [ ] **v2.0 Exploration**: Introducing lightweight open-source gateway and personal cloud disk effortless self-hosting solution...
+
+> Everyone is welcome to contribute Issues and PRs to squeeze even more life out of old hardware!

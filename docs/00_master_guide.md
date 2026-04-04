@@ -1,80 +1,89 @@
-# 🗺️ PersonalServer 官方一条龙部署与排坑指南
+# 🗺️ PersonalServer — Official Step-by-Step Deployment & Troubleshooting Guide
 
-欢迎来到 **PersonalServer** 的完整世界！
-这份指南将手把手带你把一台吃灰的旧笔记本，改造成坚如磐石的 7×24 小时 Ubuntu 24.04 个人服务器。整个流程经过无数次踩坑实测，请严格按照以下主线顺序阅读与操作。
+Welcome to the complete world of **PersonalServer**!
+This guide walks you step-by-step through transforming a dusty old laptop into a rock-solid Ubuntu 24.04 personal server running 24/7. Every step has been battle-tested. Follow the phases in order.
 
----
-
-## 📍 阶段一：环境准备 (从零开始)
-在一切开始之前，你需要准备好：
-1. **一台旧笔记本**（屏幕坏了、电池鼓包拆了都没关系）。
-2. **全新安装的 Ubuntu 24.04 LTS (noble)** 桌面版系统（目前脚本严格绑定此版本）。
-   * 💡 **独家安装利器**：装系统时强烈推荐使用高速 UFSD 优盘制作启动盘，几十块钱即可获得 SSD 级的极速装机体验，耐用性也贴合服务器得。详见 [系统盘与 UFSD ](./04_ufsd_bootable_usb_guide.md)。
-   知道刷系统者可跳过。
-3. 笔记本连上家里的路由器（插网线最好，Wi-Fi也行）。
-4. 在物理机上登录你的管理员账号，并打开终端 (Terminal)。
+> 🇨🇳 [中文版指南 (Chinese)](./00_master_guide.zh-CN.md)
 
 ---
 
-## 📍 阶段二：极速一键部署 (核心)
-不用去全网搜零碎的教程，我们已经为你打包好了所有核心组件（源配置、依赖修复、休眠屏蔽、向日葵、XRDP）。
+## 📍 Phase 1: Environment Preparation (Starting from Scratch)
 
-直接在终端执行：
+Before anything else, you need:
+
+1. **An old laptop** (broken screen, swollen battery removed — doesn't matter).
+2. **A fresh install of Ubuntu 24.04 LTS (noble)** Desktop (the script is strictly tied to this version).
+   * 💡 **Pro tip**: Use a high-speed **UFSD flash drive** to make the bootable USB — costs a few dollars, but gives SSD-level read/write speeds during installation. See [Boot Drive & UFSD](./04_ufsd_bootable_usb_guide.md).
+   If you already know how to flash a system, skip this.
+3. Connect the laptop to your home router (wired is best; Wi-Fi also works).
+4. Log in to your admin account on the physical machine and open a Terminal.
+
+---
+
+## 📍 Phase 2: One-Line Rapid Deployment (Core)
+
+No need to hunt for scattered tutorials — we've bundled all core components (mirror config, dependency fixes, sleep blocking, Sunlogin, XRDP) into one script.
+
+Run this in your terminal:
 ```bash
 wget https://raw.githubusercontent.com/peaceaddpaasion/first_personal_ubuntu_server/main/install.sh -O install.sh
 chmod +x install.sh
 sudo ./install.sh
 ```
-> ☕ **泡杯咖啡**：脚本会自动替换官方 cz 源、修复向日葵所需的跨版本底层组件、搭建全套远程和电源环境。安装完成后，机器会自动重启。
+> ☕ **Grab a coffee**: The script will automatically switch to the official `cz` mirror, fix the cross-version Sunlogin dependency, and build the full remote and power management environment. The machine will reboot automatically when done.
 
 ---
 
-## 📍 阶段三：选择适合你的远程桌面方案 (关键分水岭)
-机器重启后，你怎么连它？这是 Ubuntu 24.04 最大的深水区。我们为你准备了两条路，请根据你的实际使用场景抉择：
+## 📍 Phase 3: Choose Your Remote Desktop Setup (Key Decision)
 
-### 👉 路线 A：原生 GNOME 远程 (小白首选、兼容性最强)
-如果你这台笔记本以后就扔在角落，**永远不碰它的物理键盘和屏幕**：
-1. 物理机重启后，登录进去开启系统自带的“远程桌面”功能。
-2. **重点**：在物理机上点击右上角菜单，选择 **“注销 (Log Out)”**。
-3. 回到你的 Windows 电脑，用 `mstsc` 连接 IP 即可。
-4. **📖 延伸阅读**：[为什么要注销？了解 GNOME 原生远程与单会话限制](./03_native_gnome_rdp_vs_xfce4.md)。
+After reboot, how will you connect remotely? This is the biggest pitfall area of Ubuntu 24.04. We provide two paths — choose based on your use case:
 
-### 👉 路线 B：XRDP + XFCE4 双桌面并发 (进阶优化、极限榨干性能)
-假如家里有人偶尔要用物理屏幕看视频，而你同时还要偷偷远程进去敲代码，或者你嫌 GNOME 占用内存太高：
-1. 物理机不用注销，直接在后台挂着。
-2. Windows 端通过 `mstsc` 连接 IP，直接登入我们用脚本搭建好的 **XFCE4 轻量级第二桌面**。两者完全不冲突！
-3. **🔥 踩坑避雷指路**：这种方案因为权限强隔离，**不支持打开 Snap 应用**（例如默认的 Firefox）。
-4. **📖 延伸阅读**：[深挖：XRDP 黑屏/闪退的根本原因与 XFCE4 隔离环境原理解析](./02_xrdp_xfce4_blackscreen_fix.md)。
+### 👉 Path A: Native GNOME Remote (Recommended for Beginners, Best Compatibility)
+If this laptop will sit in a corner and you'll **never touch its physical keyboard or screen again**:
+1. After reboot, log in physically and enable the built-in "Remote Desktop" in system Settings.
+2. **Key step**: On the physical machine, click the top-right menu and select **"Log Out"**.
+3. From your Windows PC, open `mstsc` and connect by IP.
+4. **📖 Further reading**: [Why log out? Understanding GNOME native remote and single-session limits](./03_native_gnome_rdp_vs_xfce4.md).
 
----
-
-## 📍 阶段四：解决外网访问 (全自动内网穿透)
-当你带着笔记本去公司，怎样连回家里的 PersonalServer？
-不用折腾 FRP 和 Cloudflare Warp，脚本已经为你极速配置好了国民级应用 **向日葵 Linux 官方内测 / 个人版客户端**。
-
-* 在终端直接输入：`pserver remote config` 即可查看你的向日葵设备识别码，用手机或公司电脑远程绑定即可。
-* **📖 延伸阅读**：[坑是怎么填的？记一次跨版本抢救 libgconf-2-4 依赖记录](./01_sunlogin_libgconf2_fix.md)。
+### 👉 Path B: XRDP + XFCE4 Dual-Desktop Concurrent (Advanced, Maximum Performance)
+If someone at home occasionally uses the physical screen while you still need to remote in, or if GNOME's memory usage is too high:
+1. Don't log out on the physical machine — leave it running in the background.
+2. From Windows, connect via `mstsc` — you'll land directly in the **XFCE4 lightweight second desktop** the script set up. The two sessions won't interfere at all!
+3. **🔥 Known limitation**: Due to strong permission isolation, **Snap apps cannot run** (e.g., the default Firefox).
+4. **📖 Further reading**: [Deep Dive: XRDP black screen root cause & XFCE4 isolated environment explained](./02_xrdp_xfce4_blackscreen_fix.md).
 
 ---
 
-## 📍 阶段五：电源策略管理 (合盖不休眠)
-传统笔记本盖上盖子就会休眠断网，而我们的目标是 7×24 服务器。
+## 📍 Phase 4: External Network Access (Auto Remote Tunneling)
 
-* 脚本在安装尾声，已自动为你执行了 `pserver power server`，永久屏蔽了休眠进程。
-* 放心合上你的笔记本盖子，把它塞进沙发底或弱电箱吧！
-* 若日后想恢复当正常笔记本用，执行 `pserver power host` 即可解除屏蔽。
+When you're at work, how do you connect back to your home PersonalServer?
+No need to mess with FRP or Cloudflare Warp — the script has already configured the widely-used **Sunlogin official Linux client**.
+
+* Just type in terminal: `pserver remote config` to view your Sunlogin device code. Bind it from your phone or work computer and you're done.
+* **📖 Further reading**: [How the dependency was fixed: rescuing `libgconf-2-4` across Ubuntu versions](./01_sunlogin_libgconf2_fix.md).
 
 ---
 
-## 📍 阶段六：日常运维
-我们为你提供了一个顺手的全局命令工具 `pserver`。当你不知道系统状态时：
+## 📍 Phase 5: Power Policy Management (Lid-Close Without Sleep)
+
+A standard laptop sleeps and disconnects when you close the lid — but we want a 24/7 server.
+
+* At the end of installation, the script automatically runs `pserver power server`, permanently blocking all sleep processes.
+* Go ahead — close the lid and tuck it under the couch or in a cable closet!
+* If you ever want to use it as a normal laptop again, run `pserver power host` to re-enable sleep.
+
+---
+
+## 📍 Phase 6: Day-to-Day Operations
+
+We provide a handy global command tool `pserver`. When you're unsure about system status:
 ```bash
 pserver check
 ```
-它会为你输出：
-1. 电源与休眠服务的当前拦截状态。
-2. 本机网卡的 Wake-on-LAN (WOL) 唤醒激活状态。
-3. 向日葵守护进程的运行状态。
-4. XRDP 服务的运行状态。
+It outputs:
+1. Current power and sleep service interception status.
+2. Wake-on-LAN (WOL) activation status for your network interface.
+3. Sunlogin daemon running status.
+4. XRDP service running status.
 
-只要这四个亮绿灯，你的微型个人服务器就随时在线，使命必达！
+As long as all four show green, your mini personal server is online and ready to serve!

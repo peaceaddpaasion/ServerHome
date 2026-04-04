@@ -1,44 +1,52 @@
-# 子教程 1：Ubuntu 24.04 缺失 libgconf-2-4 导致向日葵安装失败的终极解法
+# Sub-tutorial 1: Ultimate Fix for Missing `libgconf-2-4` Causing Sunlogin Install Failure on Ubuntu 24.04
 
-## 问题现象
-当你在 Ubuntu 24.04 尝试安装向日葵 Linux 官方客户端时，通常会遇到依赖报错，提示缺少 `libgconf-2-4`。
-如果我们去 [Ubuntu Packages 官网搜索](https://packages.ubuntu.com/search?keywords=libgconf-2-4)，会发现这个包**最高只支持到 `jammy` (22.04 LTS)**，在 Ubuntu 24.04 (`noble`) 的官方软件源中已经被彻底移除了！
+> 🇨🇳 [中文版 (Chinese)](./01_sunlogin_libgconf2_fix.zh-CN.md)
 
-## 错误解法（踩坑警告）
-很多人的第一直觉是：**“修改 `/etc/apt/sources.list.d/ubuntu.sources` 把 22.04 的 jammy 源强行塞进去！”**
-**千万别这么干！**
-Ubuntu 24.04 改用了全新的 `deb822` 格式配置源，而且如果强行混入低版本系统的源，不仅极易出现 `universeSS` 之类的语法错误，还会导致后续使用 `apt update` 和 `apt upgrade` 时发生严重的依赖冲突，甚至搞崩系统内置组件。
+## The Problem
 
-## 实战成功解法：跨版本提取 deb 包手动安装
-既然 24.04 的仓库里不收录，我们就去 22.04 的历史归档里直接把这俩包（及其依赖）下载下来，通过 `dpkg` 直接装进 24.04 系统。这既满足了向日葵客户端的需求，又保证了 APT 源的绝对干净。
+When you try to install the official Sunlogin Linux client on Ubuntu 24.04, you'll typically encounter a dependency error reporting that `libgconf-2-4` is missing.
 
-### 核心步骤
+If you search [Ubuntu Packages](https://packages.ubuntu.com/search?keywords=libgconf-2-4), you'll find that this package **only goes up to `jammy` (22.04 LTS)** — it has been completely removed from Ubuntu 24.04 (`noble`)'s official repositories!
 
-依次在终端执行以下命令：
+## The Wrong Approach (Warning)
+
+Many people's first instinct is: **"Edit `/etc/apt/sources.list.d/ubuntu.sources` and force-add the jammy 22.04 source!"**
+
+**Don't do this!**
+
+Ubuntu 24.04 switched to the new `deb822` format for source configuration. Forcing a lower-version system source into it will not only trigger syntax errors like `universeSS`, but will also cause severe dependency conflicts during `apt update` and `apt upgrade`, potentially breaking core system components.
+
+## The Working Solution: Cross-Version `.deb` Extraction & Manual Install
+
+Since the 24.04 repository doesn't include this package, we download the `.deb` files directly from the 22.04 archive and install them via `dpkg`. This satisfies Sunlogin's requirements while keeping the APT source perfectly clean.
+
+### Steps
+
+Run these commands in your terminal in order:
 
 ```bash
-# 1. 进入临时目录
+# 1. Go to the temporary directory
 cd /tmp
 
-# 2. 从官方镜像源下载 gconf2-common 和 libgconf-2-4 的 22.04 版 deb 包
+# 2. Download the 22.04 versions of gconf2-common and libgconf-2-4 from the official mirror
 wget -q https://mirrors.aliyun.com/ubuntu/pool/universe/g/gconf/gconf2-common_3.2.6-7ubuntu2_all.deb
 wget -q https://mirrors.aliyun.com/ubuntu/pool/universe/g/gconf/libgconf-2-4_3.2.6-7ubuntu2_amd64.deb
 
-# 3. 使用 dpkg 强制安装这两个历史包
+# 3. Force-install these legacy packages via dpkg
 sudo dpkg -i gconf2-common_3.2.6-7ubuntu2_all.deb
 sudo dpkg -i libgconf-2-4_3.2.6-7ubuntu2_amd64.deb
 
-# 4. 修复可能遗漏的底层依赖
+# 4. Fix any missing lower-level dependencies
 sudo apt -f install -y
 
-# 5. 清理临时文件
+# 5. Clean up temp files
 rm -f gconf2-common*.deb libgconf-2-4*.deb
 ```
 
-完成这一步后，你就可以通过官方源顺利安装向日葵客户端了：
+After this, you can install the Sunlogin client from the official source without issues:
 ```bash
 wget -q -O /tmp/sunlogin.deb https://dl.oray.com/sunlogin/latest/SunloginClient_Linux_x64.deb
 sudo dpkg -i /tmp/sunlogin.deb || sudo apt -f install -y
 ```
 
-> **总结**：依赖降级安装远比“污染 APT 软件源”要安全得多。这也是本项目 `install.sh` 脚本中采用的标准化解决方案！
+> **Summary**: Installing a downgraded dependency directly is far safer than "polluting the APT source". This is also the standard approach used in the `install.sh` script of this project!
