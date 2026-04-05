@@ -1,20 +1,25 @@
-﻿# 子教程 4：从零系统开荒极速装机与启动盘制作指北
+# Sub-tutorial 4: Installing Ubuntu 24.04 from Scratch — Bootable USB Creation Guide
 
-在运行一键部署脚本之前，你需要给旧电脑装上纯净的 **Ubuntu 24.04 LTS (noble)**。这里提几个实战中极大提升体验的装机硬核建议：
+> 🇨🇳 [中文版 (Chinese)](./04_ufsd_bootable_usb_guide.zh-CN.md)
 
-## ⚡ 硬件亮点：强烈推荐 UFSD 优盘
-千万别用祖传的老旧 USB 2.0/3.0 优盘装系统，龟速随机读写会让你在刻录和安装时痛不欲生。
-建议花几十块钱买一个 **UFSD 优盘（如 UFSD ii）**。它等同于把 SSD 固态硬盘装进了优盘里，随身携带，无论是刻录还是在旧电脑刷入系统，均能享受秒级极致体验。
+Before running the one-click deployment script, you need to install a clean **Ubuntu 24.04 LTS (noble)** on your old computer. Here are some hardware and tooling tips from real-world experience that will dramatically improve the setup process:
 
-## 🛠️ 极速刷入教程 (Rufus)
-对于 Windows 用户，制作系统盘最轻量、最靠谱的写盘神器毫无疑问是 **[Rufus](https://rufus.ie/zh/)**（免安装，极简纯粹）。
+## ⚡ Hardware Highlight: Strongly Recommend a UFSD Flash Drive
 
-**核心步骤极简说**：
-1. 下载 [Ubuntu 24.04 iso 镜像](https://ubuntu.com/download/desktop)。
-2. 运行 Rufus，插入 UFSD 优盘，选择刚才的 iso 镜像，其余保持默认，点击开始。
-3. 将优盘插在旧电脑上，开机狂按 `F12/F2/F8` (据主板而定) 进引导选单，选择以优盘启动，纯净安装系统。
+Don't use an old USB 2.0/3.0 flash drive to install the OS — the agonizingly slow random read/write speeds will make both writing the image and the installation itself a painful experience.
 
-> 📖 **详尽图文引援**：若是第一次装系统，建议参考优质详尽教程：  
-> 👉 [Ubuntu 官方图文：如何在 Windows 上制作启动盘(推荐)](https://ubuntu.com/tutorials/create-a-bootable-usb-stick-on-windows)
+Spend a few dollars on a **UFSD flash drive (e.g., UFSD ii)**. It essentially puts an SSD inside a USB stick. Whether you're flashing the image or installing the OS on the old computer, you'll enjoy blazing-fast, near-instant performance.
 
-一切就绪、联网后，即可点击回到 [👉 官方一条龙主线指南](./00_master_guide.md)，用我们的一键脚本赋予你的旧电脑服务器新生！
+## 🛠️ Rapid Flashing Tutorial (Rufus)
+
+For Windows users, the lightest and most reliable tool for creating a bootable USB is undoubtedly **[Rufus](https://rufus.ie/en/)** (portable, no installation needed, clean and simple).
+
+**Core steps in brief**:
+1. Download the [Ubuntu 24.04 ISO image](https://ubuntu.com/download/desktop).
+2. Run Rufus, plug in the UFSD drive, select the ISO, leave everything else at default, and click Start.
+3. Plug the USB into the old computer, power it on and rapidly press `F12/F2/F8` (varies by motherboard) to open the boot menu, select USB boot, and do a clean install.
+
+> 📖 **Detailed step-by-step guide**: If this is your first time installing an OS, refer to the official tutorial:  
+> 👉 [Ubuntu Official: How to Create a Bootable USB Stick on Windows (Recommended)](https://ubuntu.com/tutorials/create-a-bootable-usb-stick-on-windows)
+
+Once the OS is ready and you're online, head back to the [👉 Official Master Guide](./00_master_guide.md) and use our one-click script to give your old computer a new life as a server!

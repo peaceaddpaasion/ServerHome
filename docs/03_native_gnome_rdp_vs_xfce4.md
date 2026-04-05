@@ -1,47 +1,52 @@
-# 子教程 3：Ubuntu 24.04 原生 GNOME 远程（首选）与 XFCE4 双桌面（进阶）的定位说明
+# Sub-tutorial 3: Native GNOME Remote (First Choice) vs. XFCE4 Dual-Desktop (Advanced) — Positioning Guide
 
-在前面的排坑教程中，我们花大力气讲解了 XFCE4 隔离桌面的实现原理。但这可能会给大家产生一个误解：*是不是 Ubuntu 24.04 的自带远程彻底没救了，必须装 XFCE4 才能用？*
+> 🇨🇳 [中文版 (Chinese)](./03_native_gnome_rdp_vs_xfce4.zh-CN.md)
 
-**并非如此！不能喧宾夺主。** 
+In the previous troubleshooting guide, we spent a lot of time explaining the XFCE4 isolated desktop implementation. This might create a misconception: *Does Ubuntu 24.04's built-in remote desktop not work at all? Do I have to install XFCE4?*
 
-对于绝大多数刚刚部署好服务器的用户来说，**Ubuntu 24.04 原生的 GNOME 远程桌面依然是首选且最简单可用的方案**。XFCE4 只是为了特定痛点（会话冲突/性能）提供的进阶优化方案。
+**That's not the case!**
 
----
-
-## 1. 原生 GNOME 远程：简单、够用、兼容性完美
-
-Ubuntu 24.04 已经内置了基于 `gnome-remote-desktop` 的 RDP 服务。
-* **优点**：开箱即用，支持各种原生配置，**完全不会出现 Snap 浏览器闪退、输入法找不到等因“隔离”带来的兼容性问题**。
-* **开启步骤**：
-  1. 在 Ubuntu 物理机上进入 **设置 (Settings)** -> **系统 (System)** -> **远程桌面 (Remote Desktop)**。
-  2. 开启“远程桌面”以及“允许远程控制”的开关。
-  3. 配置好远程登录的账号密码。
-  4. 回到 Windows，打开系统自带的远程桌面连接（`mstsc`），输入 IP 即可流畅连入。
+For the vast majority of users who have just deployed their server, **Ubuntu 24.04's native GNOME Remote Desktop is still the first choice and the simplest usable solution**. XFCE4 is an advanced optimization option designed for specific pain points (session conflicts / performance).
 
 ---
 
-## 2. 既然原生能用，为什么还费尽心思提供 XFCE4 方案？
+## 1. Native GNOME Remote: Simple, Sufficient, Perfectly Compatible
 
-原生的 GNOME 远程在 Ubuntu 24.04 下有一个极其难受的机制限制——**单会话/物理桌面互斥**。
-* 如果你刚才还在物理机（实体屏幕前）用着你的账号，没有退出。当你从公司通过 RDP 远程时，**大概率会直接黑屏，或是连接被拒，又或者只能进行同屏镜像查看**。
-* **原生的规矩是**：你必须在出门前，在物理机上将当前用户**彻底注销 (Logout)**，把控制权完全释放，远程连接才能不受干扰地登入后台 GNOME 会话。
+Ubuntu 24.04 already has a built-in RDP service based on `gnome-remote-desktop`.
 
-> 对于一台纯粹吃灰的服务器，你完全可以合盖前将其注销，然后永远只用原生 RDP 连入，这是完全没问题的！
-
----
-
-## 3. XFCE4 双桌面方案的真正定位
-
-我们在前文及 `install.sh` 脚本中提供的 `dbus-run-session -- xfce4-session` 玩法，是为了解决**性能及多面访问**而存在的进阶策略。它的定位是：
-
-1. **主机与远程完全不冲突（多用户并发）**
-   物理机并没有注销，甚至家里的其他人正盯着物理屏幕看视频；而你在公司依然可以直接用被隔离出来的 XFCE4 RDP 进行远程运维。二者互不干扰，实现了真正的“多路并发”。
-   
-2. **拯救老旧硬件（极致性能优化）**
-   旧笔记本改造服务器最怕的就是负载过高。GNOME 桌面极其吃内存和 GPU 资源。而 XFCE4 作为极其轻量级的桌面，内存占用极低，能最大限度把资源省下来给你的 Docker 容器或代码编译进程。
+* **Advantages**: Works out of the box, supports all native configurations, **no compatibility issues from "isolation"** such as Snap browser crashes or missing input methods.
+* **How to enable**:
+  1. On the Ubuntu physical machine, go to **Settings** → **System** → **Remote Desktop**.
+  2. Enable "Remote Desktop" and "Allow Remote Control" toggles.
+  3. Set up the remote login credentials.
+  4. On Windows, open the built-in Remote Desktop Connection (`mstsc`), enter the IP, and connect smoothly.
 
 ---
 
-### 💡 结论与建议
-* **推荐做法**：如果你部署完就把旧笔记本扔在角落、平时绝不碰它的实体键盘和屏幕，**请在物理机注销后，首选使用 Ubuntu 自带的 GNOME 远程**，享受完美的生态体验。
-* **进阶场景**：如果你追求榨干老旧机器的每一滴性能，或是需要应对“有人用主屏幕，有人要远程”的并行需求，再切入使用本脚本为你备好的 **XRDP + XFCE4 方案**。
+## 2. If Native Works, Why Bother with XFCE4?
+
+Native GNOME remote on Ubuntu 24.04 has one frustrating architectural limitation: **single-session / physical desktop exclusivity**.
+
+* If you were just using your account on the physical machine (sitting in front of the screen) without logging out, and you try to connect via RDP from work — **you'll most likely get a black screen, a rejected connection, or only a mirrored view of the physical screen**.
+* **The native rule is**: You must fully **Log Out** the current user on the physical machine before leaving, releasing control completely, so the remote connection can seamlessly enter the background GNOME session.
+
+> For a server that just sits in a corner gathering dust, you can log out before closing the lid and then always use native RDP to connect. That works perfectly!
+
+---
+
+## 3. The True Role of the XFCE4 Dual-Desktop Solution
+
+The `dbus-run-session -- xfce4-session` approach provided in `install.sh` exists as an **advanced strategy for performance and parallel access**. Its positioning is:
+
+1. **Physical machine and remote session never conflict (multi-user concurrent access)**
+   The physical machine doesn't log out — someone at home can even be watching a video on the physical screen — while you can still connect remotely via the isolated XFCE4 RDP session. Completely independent, true "multi-path concurrent" access.
+
+2. **Rescue old hardware (extreme performance optimization)**
+   The biggest fear when converting an old laptop to a server is high load. The GNOME desktop is extremely memory and GPU intensive. XFCE4 is an ultra-lightweight desktop with minimal memory footprint, saving the maximum resources for your Docker containers or compile jobs.
+
+---
+
+### 💡 Conclusion & Recommendations
+
+* **Recommended**: If you deploy and then tuck the old laptop in the corner, never touching its physical keyboard or screen again — **log out on the physical machine first, then primarily use Ubuntu's built-in GNOME remote** for a seamless ecosystem experience.
+* **Advanced scenario**: If you want to squeeze every last drop of performance from aging hardware, or need to handle "someone is using the physical screen while someone else needs to remote in" concurrently — switch to the **XRDP + XFCE4 solution** that this script has pre-configured for you.
