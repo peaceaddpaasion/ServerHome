@@ -220,6 +220,6 @@ sunloginclient
 
 GUI：可以看到有图标了
 
-![image-20260403223000620](C:\Users\15991\AppData\Roaming\Typora\typora-user-images\image-20260403223000620.png)
+
 
 （此为xfce桌面）
