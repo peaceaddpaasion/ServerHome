@@ -1,5 +1,11 @@
 # 🚀 拯救吃灰旧电脑！Ubuntu 24.04 零门槛变身 7×24 个人服务器 (一键部署)
 
+<p align="center">
+  <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Android%20%7C%20iPadOS-lightgrey.svg" alt="Platform">
+  <img src="https://img.shields.io/badge/Language-Shell%20%7C%20Bash-green.svg" alt="Language">
+</p>
+
 > 💡 **About PersonalServer:**  
 > *How to create your server, with hardware like n100 or old laptop, even your virtual machine, and own a never shutdown Desktop Environment. It can work like a clouddisk with thrilling speed, turn your andorid device into expensive laptop(LOL). Be with you.*  
 > 👉 [点击查看：项目愿景、远期计划与推进路线图 (Roadmap)](./purpose/vision_and_roadmap.md)

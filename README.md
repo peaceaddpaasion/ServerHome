@@ -1,5 +1,11 @@
 # 🚀 Revive Your Old Laptop! Ubuntu 24.04 → Personal Server 24/7 (One-Line Deploy)
 
+<p align="center">
+  <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Android%20%7C%20iPadOS-lightgrey.svg" alt="Platform">
+  <img src="https://img.shields.io/badge/Language-Shell%20%7C%20Bash-green.svg" alt="Language">
+</p>
+
 > 💡 **About PersonalServer:**  
 > *How to create your server, with hardware like n100 or old laptop, even your virtual machine, and own a never-shutdown Desktop Environment. It can work like a cloud disk with thrilling speed, turn your Android device into an expensive laptop (LOL). Be with you.*  
 > 👉 [View: Project Vision, Long-term Goals & Roadmap](./purpose/vision_and_roadmap.md)
