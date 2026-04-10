@@ -8,7 +8,7 @@ Before running the one-click deployment script, you need to install a clean **Ub
 
 Don't use an old USB 2.0/3.0 flash drive to install the OS — the agonizingly slow random read/write speeds will make both writing the image and the installation itself a painful experience.
 
-Spend a few dollars on a **UFSD flash drive (e.g., UFSD ii)**. It essentially puts an SSD inside a USB stick. Whether you're flashing the image or installing the OS on the old computer, you'll enjoy blazing-fast, near-instant performance.
+Spend a few dollars on a **UFSD flash drive (e.g., UFSD ii)**. It’s rootly a phone disk inside a USB stick,providing long term high 4k performance,which matters about running system. Whether you're flashing the image or installing the OS on the old computer, you'll enjoy blazing-fast, near-instant performance.
 
 ## 🛠️ Rapid Flashing Tutorial (Rufus)
 
